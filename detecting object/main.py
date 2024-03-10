@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
 
-def rescaleFrame(frame, scale=0.2):
+def rescaleFrame(frame, scale=0.6):
     width = int(frame.shape[1] * scale)
     height = int(frame.shape[0] * scale)
     dimensions = (width, height)
@@ -13,7 +13,7 @@ template = cv.imread(r'detecting object\ball.PNG', 0)
 h,w = template.shape
 # print(img)
 
-methods = [cv.TM_CCOEFF, cv.TM_CCOEFF_NORMED, cv.TM_CCORR,
+methods = [cv.TM_CCOEFF, cv.TM_CCOEFF_NORMED,
             cv.TM_CCORR_NORMED, cv.TM_SQDIFF, cv.TM_SQDIFF_NORMED]
 
 for method in methods:
