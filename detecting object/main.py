@@ -1,8 +1,15 @@
 import numpy as np
 import cv2 as cv
 
-img = cv.imread('detecting object\org.png', 0)
-template = cv.imread('detecting object\image.png', 0)
+def rescaleFrame(frame, scale=0.2):
+    width = int(frame.shape[1] * scale)
+    height = int(frame.shape[0] * scale)
+    dimensions = (width, height)
+    
+    return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
+
+img = cv.imread(r'detecting object\soccer_practice.jpg', 0)
+template = cv.imread(r'detecting object\ball.PNG', 0)
 h,w = template.shape
 # print(img)
 
@@ -21,5 +28,5 @@ for method in methods:
         
     bottom_right = (location[0] + w, location[1] + h)    
     cv.rectangle(img2, location, bottom_right, 0, 5)
-    cv.imshow('Match', img2)
+    cv.imshow('Match', rescaleFrame(img2))
     cv.waitKey(0)
